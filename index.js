@@ -81,6 +81,7 @@ app.get("/retry", (req, res) => {
   const response = refreshTokens(CLIENT_ID, CLIENT_SECRET, refreshToken);
   const { access_token, expires_in } = response.data;
   accessTokenCache.set(userId, access_token, Math.round(expires_in * 0.75));
+  res.redirect("/");
 });
 
 app.get("/", async (req, res) => {
